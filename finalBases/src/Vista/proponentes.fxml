@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="647.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="vista.ProponentesController">
+   <children>
+      <Label layoutX="228.0" layoutY="15.0" prefHeight="39.0" prefWidth="250.0" text="PROPONENTES">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TableView layoutX="186.0" layoutY="101.0" prefHeight="255.0" prefWidth="434.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="id" />
+          <TableColumn prefWidth="75.0" text="nombre" />
+            <TableColumn prefWidth="128.0" text="nombre proyecto" />
+            <TableColumn minWidth="0.0" text="telefono" />
+            <TableColumn prefWidth="75.0" text="calificacion" />
+        </columns>
+      </TableView>
+      <Button layoutX="35.0" layoutY="34.0" mnemonicParsing="false" text="&lt;" />
+      <ChoiceBox layoutX="23.0" layoutY="153.0" prefWidth="150.0" />
+      <Button layoutX="33.0" layoutY="273.0" mnemonicParsing="false" text="Selecionar trabajador" />
+   </children>
+</AnchorPane>
