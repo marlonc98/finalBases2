@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.InsertarProyectoController">
+   <children>
+      <ScrollPane prefHeight="495.0" prefWidth="711.0">
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="941.0" prefWidth="711.0">
+               <children>
+                  <Label layoutX="286.0" layoutY="14.0" text="Publica tu proyecto" />
+                  <Label layoutX="87.0" layoutY="55.0" text="Nombre" />
+                  <Label layoutX="84.0" layoutY="358.0" text="Presupuesto" />
+                  <Label layoutX="84.0" layoutY="409.0" text="Certificados Obligatorios" />
+                  <Label layoutX="83.0" layoutY="585.0" text="Imagenes antes del proyecto" />
+                  <Label layoutX="91.0" layoutY="713.0" text="Descripción" />
+                  <Label layoutX="83.0" layoutY="107.0" text="Ubicación" />
+                  <Label layoutX="337.0" layoutY="116.0" text="Departamento" />
+                  <Label layoutX="337.0" layoutY="181.0" text="Ciudad" />
+                  <Label layoutX="338.0" layoutY="257.0" text="Direccion" />
+                  <Label layoutX="468.0" layoutY="289.0" text="-" />
+                  <Label layoutX="525.0" layoutY="289.0" text="#" />
+                  <TextField fx:id="ppNombre" layoutX="337.0" layoutY="51.0" />
+                  <ChoiceBox fx:id="ppDepartamento" layoutX="336.0" layoutY="144.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="ppCiudad" layoutX="336.0" layoutY="215.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="ppVia" layoutX="336.0" layoutY="285.0" prefHeight="25.0" prefWidth="82.0" />
+                  <TextField fx:id="ppDir1" layoutX="424.0" layoutY="285.0" prefHeight="25.0" prefWidth="38.0" />
+                  <TextField fx:id="ppDir2" layoutX="479.0" layoutY="285.0" prefHeight="25.0" prefWidth="38.0" />
+                  <TextField fx:id="ppDir3" layoutX="542.0" layoutY="285.0" prefHeight="25.0" prefWidth="38.0" />
+                  <TextField fx:id="ppPresupuesto" layoutX="330.0" layoutY="354.0" />
+                  <VBox fx:id="vbCertificados" layoutX="343.0" layoutY="409.0" prefHeight="122.0" prefWidth="293.0" />
+                  <ImageView fx:id="imgPrev" disable="true" fitHeight="122.0" fitWidth="138.0" layoutX="343.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btUploadImg" layoutX="342.0" layoutY="581.0" mnemonicParsing="false" onAction="#selectImg" prefHeight="122.0" prefWidth="138.0" text="Sube  tus imagenes" />
+                  <Button fx:id="changeImgBt" layoutX="510.0" layoutY="581.0" mnemonicParsing="false" onAction="#selectImg" text="Cambiar imagen" visible="false" />
+                  <Button fx:id="anadir" layoutX="404.0" layoutY="541.0" mnemonicParsing="false" onAction="#anadir" text="Añadir certificado" />
+                  <Button layoutX="525.0" layoutY="541.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar certificado" />
+                  <TextArea fx:id="ppDescripcion" layoutX="342.0" layoutY="722.0" prefHeight="111.0" prefWidth="293.0" />
+                  <Button layoutX="418.0" layoutY="854.0" mnemonicParsing="false" onAction="#insertProject" text="Publicar" />
+                  <Button layoutX="24.0" layoutY="10.0" mnemonicParsing="false" onAction="#atras" text="&lt;" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

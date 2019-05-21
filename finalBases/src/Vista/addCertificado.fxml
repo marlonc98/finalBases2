@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="415.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.AddCertificadoController">
+   <children>
+      <VBox fx:id="acCertificados" layoutX="170.0" layoutY="103.0" prefHeight="200.0" prefWidth="233.0" />
+      <Label layoutX="170.0" layoutY="60.0" text="Añadir certificados" />
+      <Button layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#atras" text="&lt;" />
+      <Button layoutX="289.0" layoutY="331.0" mnemonicParsing="false" onAction="#anadir" text="Añadir" />
+      <Button layoutX="357.0" layoutY="331.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
+      <Button layoutX="357.0" layoutY="366.0" mnemonicParsing="false" onAction="#insertProjCert" text="Guardar" />
+   </children>
+</AnchorPane>
