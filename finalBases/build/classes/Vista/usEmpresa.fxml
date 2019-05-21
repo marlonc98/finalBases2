@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="282.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.UsEmpresaController">
+   <children>
+      <Label layoutX="112.0" layoutY="26.0" text="Ingresar usuario a empresa" />
+      <Label layoutX="62.0" layoutY="62.0" text="id usuario" />
+      <Label layoutX="65.0" layoutY="145.0" text="administrador" />
+      <Label layoutX="65.0" layoutY="191.0" text="contraseña" />
+      <TextField fx:id="ueId" layoutX="151.0" layoutY="58.0" promptText="usuario" />
+      <TextField fx:id="ueAdmin" layoutX="154.0" layoutY="141.0" promptText="admin" />
+      <PasswordField fx:id="uePass" layoutX="154.0" layoutY="187.0" promptText="contrase{a" />
+      <Button layoutX="36.0" layoutY="22.0" mnemonicParsing="false" onAction="#atras" text="&lt;" />
+      <Button layoutX="144.0" layoutY="234.0" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" />
+   </children>
+</AnchorPane>
