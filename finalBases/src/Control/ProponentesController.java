@@ -5,24 +5,36 @@
  */
 package Control;
 
-import Modelo.Ciudad;
-import Modelo.Departamento;
 import Modelo.Proyecto;
 import Modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+
 
 /**
  * FXML Controller class
@@ -30,33 +42,153 @@ import javafx.scene.control.TextField;
  * @author johann.montoya
  */
 public class ProponentesController implements Initializable {
-    
-    
-    
+    Usuario user = new Usuario(3, "marlonc98", "1234", "marlonc98", 0, 0, 0, 0);
+        
+    @FXML
+    private TableColumn pId, pNombre, pNombre_proyecto, 
+            pTelefono, pCalificacion, pIdp;
     
     @FXML
-    private TableColumn id, nombre, nombre_proyecto, 
-            telefono, calificacion;
+    private ChoiceBox pRegistro;
     
     @FXML
-    private ChoiceBox registro;
+    private TableView pTable;
     
     @FXML
-    private Button atras, selecionarTrabajador;
-//    
-   
-    
+    private Button pCulminar, pSelect;
+//        
     LinkedList<Proyecto> proyectos = new LinkedList<>();
+    ObservableList<String> obs = FXCollections.observableArrayList();
     LinkedList<Usuario> usuarios = new LinkedList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        cargarProyectos();
+        addListenerChoice();
+        loadPropuestos();
+    }
+    
+    void cargarProyectos(){
+        System.out.println("entra-----");
+        String sql = "call getProjects("+user.getId()+")";
+        Conectar cd = new Conectar();
+        try{
+            if(cd.crearConexion()){
+                cd.getConexion().setAutoCommit(false);
+                Statement st = cd.getSt();
+                ResultSet rs = st.executeQuery(sql);
+                obs.add("Cualquiera");
+                while(rs.next()){
+                    Proyecto pp = new Proyecto();
+                    pp.setId(rs.getInt("id"));
+                    pp.setNombre(rs.getString("nombre"));
+                    pp.setEstado_id(rs.getString("estado"));
+                    System.out.println(pp.getEstado_id());
+                    proyectos.add(pp);
+                    obs.add(pp.getNombre());
+                }
+                pRegistro.setItems(obs);
+                pRegistro.setValue("Cualquiera");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProponentesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void addListenerChoice(){
+        pRegistro.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                loadPropuestos();
+            }
+        });
     }
 
+    void loadPropuestos(){
+        String sql;
+        int toSend = 0;
+        String choVal = pRegistro.getValue().toString();
+        if(choVal.equals("Cualquiera")){
+            toSend = user.getId();
+            sql = "call getAllUsarios_propuestos("+toSend+")";
+            pSelect.setDisable(true);
+            pCulminar.setDisable(true);
+        }else{
+            //calcular toSend
+            for(Proyecto proyecto: proyectos){
+                if(proyecto.getNombre().equals(choVal)){
+                    toSend = proyecto.getId();
+                    System.out.println(proyecto.getEstado_id());
+                    if(proyecto.getEstado_id().equals("disponible")){
+                        pSelect.setDisable(true);
+                        pCulminar.setDisable(false);
+                    }else{
+                        pSelect.setDisable(false);
+                        pCulminar.setDisable(true);
+                    }
+                    break;
+                }
+            }
+            sql = " call getUsarios_propuestos("+toSend+")";
+        }
+        System.out.println(toSend + "to send");
+        System.out.println(sql);
+        
+        //sql
+        Conectar cd = new Conectar();
+        try{
+            if(cd.crearConexion()){
+                cd.getConexion().setAutoCommit(false);
+                Statement st = cd.getSt();
+                ResultSet rs = st.executeQuery(sql);
+                usuarios.clear();
+                while(rs.next()){
+                    Usuario user = new Usuario();
+                    user.setId(rs.getInt("userId"));
+                    System.out.println(user.getId());
+                    user.setNombre(rs.getString("userNombre"));
+                    System.out.println(user.getNombre());
+                    user.setPhone(rs.getInt("phone"));
+                    System.out.println(user.getPhone());
+                    user.setCalificacion(rs.getDouble("calificacion"));
+                    System.out.println(user.getCalificacion());
+                    user.setId_proyecto(rs.getInt("id"));
+                    System.out.println("pi" + user.getId_proyecto());
+                    user.setNombre_proyecto(rs.getString("nombre"));
+                    System.out.println("pi" + user.getNombre_proyecto());
+                    usuarios.add(user);
+                }
+                ObservableList<Usuario> userOb = FXCollections.observableArrayList(usuarios);
+                pId.setCellValueFactory(new PropertyValueFactory("id"));
+                pCalificacion.setCellValueFactory(new PropertyValueFactory("calificacion"));
+                pIdp.setCellValueFactory(new PropertyValueFactory("id_proyecto"));
+                pNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+                pNombre_proyecto.setCellValueFactory(new PropertyValueFactory("nombre_proyecto"));
+                pTelefono.setCellValueFactory(new PropertyValueFactory("phone"));
+                pTable.setItems(userOb);
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProponentesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     //To change body of generated methods, choose Tools | Templates.
     
-     
+         @FXML
+    private void back(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Parent parent = FXMLLoader.load(getClass().getResource("/Vista/Inicio.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
+    }
+
        
+    @FXML
+    private void culminP(ActionEvent event){
+        
+    }
     
 }

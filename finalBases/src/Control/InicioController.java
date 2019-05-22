@@ -69,6 +69,12 @@ public class InicioController implements Initializable {
         cambiarPestana(event, "usEmpresa");
     }
     
+    @FXML
+    private void tusProyectos(ActionEvent event){
+        System.out.println("loogg");
+        cambiarPestana(event, "proponentes");
+    }
+    
     void cambiarPestana(ActionEvent event,String url){
         System.out.println("entraaaaaa");
         try {

@@ -27,8 +27,8 @@
       </TableView>
       <Button layoutX="35.0" layoutY="34.0" mnemonicParsing="false" text="&lt;" />
       <ChoiceBox fx:id="pRegistro" layoutX="23.0" layoutY="153.0" prefWidth="150.0" />
-      <Button fx:id="pSelect" layoutX="33.0" layoutY="287.0" mnemonicParsing="false" text="Selecionar trabajador" />
+      <Button fx:id="pSelect" layoutX="33.0" layoutY="273.0" mnemonicParsing="false" text="Selecionar trabajador" />
       <Button layoutX="33.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="Eliminar proyecto" />
-      <Button fx:id="pCulminar" layoutX="34.0" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="Culminar proyecto" />
+      <Button fx:id="pCulminar" layoutX="34.0" layoutY="273.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" text="Culminar proyecto" visible="false" />
    </children>
 </AnchorPane>

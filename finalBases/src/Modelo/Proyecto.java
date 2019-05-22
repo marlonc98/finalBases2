@@ -15,15 +15,16 @@ import java.sql.Statement;
  */
 public class Proyecto {
     
-    String id, nombre, direccion, estado_id, contratante_id,
+    String nombre, direccion, estado_id, contratante_id,
             contatado_id, opinion_contratante, opinion_contratado,
             calificacion_contratante, calificacion_contratado, ciudad, 
             foto_inicial, foto_final, descriccion;
+    int id;
 
     public Proyecto() {
     }
 
-    public Proyecto(String id, String nombre, String direccion, String estado_id, String contratante_id, String contatado_id, String opinion_contratante, String opinion_contratado, String calificacion_contratante, String calificacion_contratado, String ciudad, String foto_inicial, String foto_final, String descriccion) {
+    public Proyecto(int id, String nombre, String direccion, String estado_id, String contratante_id, String contatado_id, String opinion_contratante, String opinion_contratado, String calificacion_contratante, String calificacion_contratado, String ciudad, String foto_inicial, String foto_final, String descriccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -40,7 +41,7 @@ public class Proyecto {
         this.descriccion = descriccion;
     }
 
-    public Proyecto(String id, String nombre, String direccion, String estado_id, String contratante_id, String contatado_id, String ciudad, String descriccion) {
+    public Proyecto(int id, String nombre, String direccion, String estado_id, String contratante_id, String contatado_id, String ciudad, String descriccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -51,11 +52,11 @@ public class Proyecto {
         this.descriccion = descriccion;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

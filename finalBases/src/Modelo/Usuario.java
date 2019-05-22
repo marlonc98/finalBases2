@@ -14,9 +14,10 @@ import java.sql.Statement;
  * @author johann.montoya
  */
 public class Usuario {
-    String  user_log, password_log,correo, nombre, empresa;
+    String  user_log, password_log,correo, nombre, empresa, nombre_proyecto;
     int id, phone, id_empresa,total_proyectos;
     double calificacion;
+    int id_proyecto;
 
     public Usuario() {
     }
@@ -24,7 +25,7 @@ public class Usuario {
     public String getNombre() {
         return nombre;
     }
-
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -36,7 +37,23 @@ public class Usuario {
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
-        
+
+    public String getNombre_proyecto() {
+        return nombre_proyecto;
+    }
+
+    public void setNombre_proyecto(String nombre_proyecto) {
+        this.nombre_proyecto = nombre_proyecto;
+    }
+
+    public int getId_proyecto() {
+        return id_proyecto;
+    }
+
+    public void setId_proyecto(int id_proyecto) {
+        this.id_proyecto = id_proyecto;
+    }
+    
     public Usuario(int id, String user_log, String password_log, String correo, int phone, int id_empresa, double calificacion, int total_proyectos) {
         this.id = id;
         this.user_log = user_log;
