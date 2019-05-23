@@ -20,6 +20,26 @@ public class Proyecto {
             calificacion_contratante, calificacion_contratado, ciudad, 
             foto_inicial, foto_final, descriccion;
     int id;
+    double presupuesto;
+    String encargado;
+
+    public String getEncargado() {
+        return encargado;
+    }
+
+    public void setEncargado(String encargado) {
+        this.encargado = encargado;
+    }
+    
+    public double getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(double presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+   
+    
 
     public Proyecto() {
     }

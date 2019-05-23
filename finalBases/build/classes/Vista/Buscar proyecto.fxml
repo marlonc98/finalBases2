@@ -13,18 +13,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.BuscarProyectoController">
    <children>
-      <TableView layoutX="58.0" layoutY="162.0" prefHeight="200.0" prefWidth="635.0">
+      <TableView fx:id="btTable" layoutX="58.0" layoutY="162.0" prefHeight="200.0" prefWidth="635.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="id" />
-          <TableColumn prefWidth="75.0" text="nombe" />
-            <TableColumn prefWidth="75.0" text="encargado" />
-            <TableColumn prefWidth="75.0" text="presupuesto" />
-            <TableColumn prefWidth="75.0" text="ciudad" />
+          <TableColumn fx:id="btId" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="btNombre" prefWidth="75.0" text="nombre" />
+            <TableColumn fx:id="btEncargado" prefWidth="75.0" text="encargado" />
+            <TableColumn fx:id="btPresupuesto" prefWidth="75.0" text="presupuesto" />
+            <TableColumn fx:id="btCity" prefWidth="75.0" text="ciudad" />
         </columns>
       </TableView>
       <ChoiceBox fx:id="btCiudad" layoutX="307.0" layoutY="118.0" prefWidth="150.0" />
       <ChoiceBox fx:id="btDepartamento" layoutX="130.0" layoutY="119.0" prefWidth="150.0" />
-      <Button layoutX="45.0" layoutY="25.0" mnemonicParsing="false" onAction="#atras" text="&lt;" />
+  <Button layoutX="45.0" layoutY="25.0" mnemonicParsing="false" onAction="#atras" text="&lt;" />
       <Button layoutX="643.0" layoutY="106.0" mnemonicParsing="false" onAction="#filtrar" text="Buscar" />
       <TextField id="cedula" fx:id="btCedula" layoutX="473.0" layoutY="118.0" onAction="#filtrar" promptText="Cedula" />
       <Label layoutX="130.0" layoutY="98.0" text="Departamento" />
@@ -40,6 +40,6 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button layoutX="643.0" layoutY="377.0" mnemonicParsing="false" text="detalles" />
+      <Button layoutX="643.0" layoutY="377.0" mnemonicParsing="false" onAction="#detallar" text="detalles" />
    </children>
 </AnchorPane>

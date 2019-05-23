@@ -76,16 +76,13 @@ public class InicioController implements Initializable {
     }
     
     void cambiarPestana(ActionEvent event,String url){
-        System.out.println("entraaaaaa");
         try {
             Parent buscar_trabajador_parent = FXMLLoader.load(getClass().getResource("/Vista/"+url+".fxml"));
             Scene buscar_trabajos_scene = new Scene(buscar_trabajador_parent);
             Stage main_stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             main_stage.setScene(buscar_trabajos_scene);
             main_stage.show();
-            System.out.println("su mama");
         } catch (IOException ex) {
-            System.out.println("su papa");
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
