@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="804.0" prefWidth="603.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Vista.DetalleController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="811.0" prefWidth="596.0">
+         <children>
+            <Label layoutX="296.0" layoutY="23.0" text="Label" />
+            <Label layoutX="86.0" layoutY="67.0" text="Label" />
+            <Label layoutX="86.0" layoutY="112.0" text="Label" />
+            <Label layoutX="86.0" layoutY="167.0" text="Label" />
+            <Label layoutX="86.0" layoutY="227.0" text="Label" />
+            <Label layoutX="86.0" layoutY="287.0" text="Label" />
+            <Label layoutX="86.0" layoutY="337.0" text="Label" />
+            <Label layoutX="86.0" layoutY="407.0" text="Label" />
+            <Label layoutX="86.0" layoutY="477.0" text="Label" />
+            <Label layoutX="87.0" layoutY="541.0" text="Label" />
+            <Label layoutX="87.0" layoutY="594.0" text="Label" />
+            <Label layoutX="87.0" layoutY="644.0" text="Label" />
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
