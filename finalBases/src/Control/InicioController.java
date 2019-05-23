@@ -56,7 +56,7 @@ public class InicioController implements Initializable {
 
     @FXML
     private void BusqProy(ActionEvent event) {
-        cambiarPestana(event, "Buscar trabajador");
+        cambiarPestana(event, "Buscar proyecto");
     }
     
     @FXML

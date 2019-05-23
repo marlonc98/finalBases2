@@ -9,6 +9,7 @@ import Modelo.Proyecto;
 import Modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 
 
@@ -52,7 +54,7 @@ public class ProponentesController implements Initializable {
     private ChoiceBox pRegistro;
     
     @FXML
-    private TableView pTable;
+    private TableView<Usuario> pTable;
     
     @FXML
     private Button pCulminar, pSelect;
@@ -69,7 +71,6 @@ public class ProponentesController implements Initializable {
     }
     
     void cargarProyectos(){
-        System.out.println("entra-----");
         String sql = "call getProjects("+user.getId()+")";
         Conectar cd = new Conectar();
         try{
@@ -83,7 +84,6 @@ public class ProponentesController implements Initializable {
                     pp.setId(rs.getInt("id"));
                     pp.setNombre(rs.getString("nombre"));
                     pp.setEstado_id(rs.getString("estado"));
-                    System.out.println(pp.getEstado_id());
                     proyectos.add(pp);
                     obs.add(pp.getNombre());
                 }
@@ -111,8 +111,8 @@ public class ProponentesController implements Initializable {
         if(choVal.equals("Cualquiera")){
             toSend = user.getId();
             sql = "call getAllUsarios_propuestos("+toSend+")";
-            pSelect.setDisable(true);
-            pCulminar.setDisable(true);
+            pSelect.setDisable(false);
+            pCulminar.setDisable(false);
         }else{
             //calcular toSend
             for(Proyecto proyecto: proyectos){
@@ -120,19 +120,17 @@ public class ProponentesController implements Initializable {
                     toSend = proyecto.getId();
                     System.out.println(proyecto.getEstado_id());
                     if(proyecto.getEstado_id().equals("disponible")){
-                        pSelect.setDisable(true);
-                        pCulminar.setDisable(false);
-                    }else{
                         pSelect.setDisable(false);
                         pCulminar.setDisable(true);
+                    }else{
+                        pSelect.setDisable(true);
+                        pCulminar.setDisable(false);
                     }
                     break;
                 }
             }
             sql = " call getUsarios_propuestos("+toSend+")";
         }
-        System.out.println(toSend + "to send");
-        System.out.println(sql);
         
         //sql
         Conectar cd = new Conectar();
@@ -145,17 +143,10 @@ public class ProponentesController implements Initializable {
                 while(rs.next()){
                     Usuario user = new Usuario();
                     user.setId(rs.getInt("userId"));
-                    System.out.println(user.getId());
                     user.setNombre(rs.getString("userNombre"));
-                    System.out.println(user.getNombre());
-                    user.setPhone(rs.getInt("phone"));
-                    System.out.println(user.getPhone());
                     user.setCalificacion(rs.getDouble("calificacion"));
-                    System.out.println(user.getCalificacion());
                     user.setId_proyecto(rs.getInt("id"));
-                    System.out.println("pi" + user.getId_proyecto());
                     user.setNombre_proyecto(rs.getString("nombre"));
-                    System.out.println("pi" + user.getNombre_proyecto());
                     usuarios.add(user);
                 }
                 ObservableList<Usuario> userOb = FXCollections.observableArrayList(usuarios);
@@ -176,7 +167,7 @@ public class ProponentesController implements Initializable {
     //To change body of generated methods, choose Tools | Templates.
     
          @FXML
-    private void back(ActionEvent event) throws IOException {
+    private void atras(ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Parent parent = FXMLLoader.load(getClass().getResource("/Vista/Inicio.fxml"));
         Stage stage = new Stage();
@@ -188,7 +179,104 @@ public class ProponentesController implements Initializable {
        
     @FXML
     private void culminP(ActionEvent event){
+        boolean hecho = false;
+        String sql = "call completProject(?, ?, ?, ?)";
+        Usuario us = pTable.getSelectionModel().getSelectedItem();
+        double cali = 0;
         
+        //set estad
+        String estado = "";
+        for(Proyecto proyecto: proyectos){
+            if(proyecto.getId() == us.getId_proyecto()){
+                estado = proyecto.getEstado_id();
+                break;
+            }
+        }
+        if(estado.equals("")){
+            JOptionPane.showMessageDialog(null, "Error interno");
+            return;
+        }
+        if(estado.equals("disponible")){
+            JOptionPane.showMessageDialog(null, "El estado aun no ha sido asignado a un usuario");
+            return;
+        }
+        do{
+            cali = Double.parseDouble(JOptionPane.showInputDialog("Ingrese la calificación para el usuario \n debe ser entre 1 y 5"));
+        }while(cali > 5 || cali < 1);
+        int totalCali = us.getTotal_proyectos() + 1;
+        cali = ((us.getCalificacion()*us.getTotal_proyectos())+cali)/totalCali;
+        Conectar cd = new Conectar();
+        try{
+            if(cd.crearConexion()){
+                cd.getConexion().setAutoCommit(false);
+                PreparedStatement ps = cd.getConexion().prepareStatement(sql);
+                ps.setInt(1, us.getId());
+                ps.setInt(2, us.getId_proyecto());
+                ps.setDouble(3, cali);
+                ps.setInt(4, totalCali);
+                ps.executeUpdate();
+                cd.getConexion().commit();
+                hecho = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProponentesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(hecho){
+            cargarProyectos();
+            loadPropuestos();
+            JOptionPane.showMessageDialog(null, "Hecho, gracias por realizar el proyecto con nosotros");
+        }else{
+            JOptionPane.showMessageDialog(null, "Ocurrio un error");
+        }
+    }
+    
+    @FXML
+    private void darT(ActionEvent event){
+        boolean hecho = false;
+        String sql = "call darProj(?, ?)";
+        Usuario us = pTable.getSelectionModel().getSelectedItem();
+        
+        //set estado
+        String estado = "";
+        for(Proyecto proyecto: proyectos){
+            if(proyecto.getId() == us.getId_proyecto()){
+                estado = proyecto.getEstado_id();
+                break;
+            }
+        }
+        if(estado.equals("")){
+            JOptionPane.showMessageDialog(null, "Error interno");
+            return;
+        }
+        if(estado.equals("realizando")){
+            JOptionPane.showMessageDialog(null, "El estado ya se encuentra asignado a un usuario");
+            return;
+        }
+        
+        //sql
+        Conectar cd = new Conectar();
+        try{
+            if(cd.crearConexion()){
+                cd.getConexion().setAutoCommit(false);
+                PreparedStatement ps = cd.getConexion().prepareCall(sql);
+                ps.setInt(1, us.getId());
+                ps.setInt(2, us.getId_proyecto());
+                ps.executeUpdate();
+                cd.getConexion().commit();
+                hecho = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProponentesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(hecho){
+            cargarProyectos();
+            loadPropuestos();
+            JOptionPane.showMessageDialog(null, "Se ha asignado al usuario " + us.getNombre());
+        }else{
+            JOptionPane.showMessageDialog(null, "Ocurrio un error");
+        }
+
     }
     
 }
+

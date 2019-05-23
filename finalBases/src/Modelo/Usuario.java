@@ -8,17 +8,39 @@ package Modelo;
 import Control.Conectar;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 
 /**
  *
  * @author johann.montoya
  */
 public class Usuario {
-    String  user_log, password_log,correo, nombre, empresa, nombre_proyecto;
+    String  user_log, password_log,correo, nombre, empresa;
     int id, phone, id_empresa,total_proyectos;
     double calificacion;
+    
+    //PROJECT
     int id_proyecto;
+    String nombre_proyecto;
 
+    public int getId_proyecto() {
+        return id_proyecto;
+    }
+
+    public void setId_proyecto(int id_proyecto) {
+        this.id_proyecto = id_proyecto;
+    }
+
+    public String getNombre_proyecto() {
+        return nombre_proyecto;
+    }
+
+    public void setNombre_proyecto(String nombre_proyecto) {
+        this.nombre_proyecto = nombre_proyecto;
+    }
+    
+        
+    
     public Usuario() {
     }
 
@@ -36,22 +58,6 @@ public class Usuario {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
-    }
-
-    public String getNombre_proyecto() {
-        return nombre_proyecto;
-    }
-
-    public void setNombre_proyecto(String nombre_proyecto) {
-        this.nombre_proyecto = nombre_proyecto;
-    }
-
-    public int getId_proyecto() {
-        return id_proyecto;
-    }
-
-    public void setId_proyecto(int id_proyecto) {
-        this.id_proyecto = id_proyecto;
     }
     
     public Usuario(int id, String user_log, String password_log, String correo, int phone, int id_empresa, double calificacion, int total_proyectos) {
@@ -142,8 +148,9 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "user_log=" + user_log + ", password_log=" + password_log + ", correo=" + correo + ", nombre=" + nombre + ", empresa=" + empresa + ", id=" + id + ", phone=" + phone + ", id_empresa=" + id_empresa + ", total_proyectos=" + total_proyectos + ", calificacion=" + calificacion + '}';
+        return "Usuario{" + "user_log=" + user_log + ", password_log=" + password_log + ", correo=" + correo + ", nombre=" + nombre + ", empresa=" + empresa + ", id=" + id + ", phone=" + phone + ", id_empresa=" + id_empresa + ", total_proyectos=" + total_proyectos + ", calificacion=" + calificacion + ", id_proyecto=" + id_proyecto + ", nombre_proyecto=" + nombre_proyecto + '}';
     }
+
     
     
     

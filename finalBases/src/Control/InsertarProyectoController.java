@@ -392,7 +392,6 @@ public class InsertarProyectoController implements Initializable {
                         ps.setInt(2, proj);
                         ps.executeUpdate();
                         cd.getConexion().commit();
-                        System.out.println("fin");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(InsertarProyectoController.class.getName()).log(Level.SEVERE, null, ex);
