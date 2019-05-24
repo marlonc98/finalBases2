@@ -63,7 +63,7 @@ public class InsertarProyectoController implements Initializable {
     Image img;
     LinkedList<Departamento> departamentos = new LinkedList<>();
     LinkedList<Ciudad> ciudades = new LinkedList<>();
-    Usuario user = new Usuario(3, "marlonc98", "1234", "marlonc98", 0, 0, 0, 0);
+    Usuario user = null;
     File image;
     
     @FXML
@@ -92,16 +92,23 @@ public class InsertarProyectoController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+    public void initData(Usuario ObjU) {
+        user = ObjU;
         loadCerti();
         loadTipoVias();
         anadir();
         cargarDepartamentos();
         addListenerChoice();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }    
-    
+   public void importarVariables( Usuario ObjU ) {
+      user = ObjU;
+   }    
     @FXML
     private void cargarDepartamentos(){
         //primero leemos los existentes en mysql
@@ -381,11 +388,9 @@ public class InsertarProyectoController implements Initializable {
         //insertar certificados
         for(Integer intCert: certificadosi){
             Conectar cd = new Conectar();
-            System.out.println("conect");
             String sql = "call addCertificateLp(?,?)";
             try{
                 if(cd.crearConexion()){
-                    System.out.println("si Con");
                     cd.getConexion().setAutoCommit(false);
                         PreparedStatement ps = cd.getConexion().prepareStatement(sql);
                         ps.setInt(1, intCert);
@@ -413,5 +418,6 @@ public class InsertarProyectoController implements Initializable {
         }
 
    }
+   
     
 }

@@ -267,7 +267,6 @@ public class BuscarProyectoController implements Initializable {
         try{
             Proyecto pp = btTable.getSelectionModel().getSelectedItem();
             int idP = pp.getId();
-            System.out.println(idP);
             
         }catch(NullPointerException n){
             JOptionPane.showMessageDialog(null, "No se has seleccionado ningun proyecto");

@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +26,8 @@ import javafx.stage.Stage;
  * @author Ganta
  */
 public class InicioController implements Initializable {
+    
+    Usuario user;
 
     /**
      * Initializes the controller class.
@@ -32,9 +35,9 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println("entra");
     }    
-
+   
+    
     @FXML
     private void InsertProyecto(ActionEvent event) {
         cambiarPestana(event, "Insertar Proyecto");
@@ -71,19 +74,30 @@ public class InicioController implements Initializable {
     
     @FXML
     private void tusProyectos(ActionEvent event){
-        System.out.println("loogg");
         cambiarPestana(event, "proponentes");
     }
     
-    void cambiarPestana(ActionEvent event,String url){
+    void cambiarPestana(ActionEvent event, String url){
         try {
-            Parent buscar_trabajador_parent = FXMLLoader.load(getClass().getResource("/Vista/"+url+".fxml"));
-            Scene buscar_trabajos_scene = new Scene(buscar_trabajador_parent);
+            FXMLLoader loader =  new FXMLLoader();
+            loader.setLocation(getClass().getResource("/Vista/"+url+".fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            
+            InsertarProyectoController ipc = loader.getController();
+            ipc.initData(user);
+
             Stage main_stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            main_stage.setScene(buscar_trabajos_scene);
+            main_stage.setScene(scene);
             main_stage.show();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+
+    void initData(Usuario ObjU) {
+        user = ObjU;
+        System.out.println(user.toString());
     }
 }

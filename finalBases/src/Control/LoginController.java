@@ -32,6 +32,8 @@ import Modelo.Usuario;
  * @author Ganta
  */
 public class LoginController implements Initializable {
+    
+    Usuario ObjU =  null;
     @FXML
     private TextField loginUser;
     
@@ -44,7 +46,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
     @FXML
     private void LogIn(ActionEvent event) {
         
@@ -62,8 +64,12 @@ public class LoginController implements Initializable {
                     //carga usuario
                     String usuarioA = rs.getString("user_log");
                     String contrasenaA = rs.getString("password_log");
+                    int id = rs.getInt("id");
                     
-                    Usuario ObjU = new Usuario();
+                     ObjU = new Usuario();
+                     ObjU.setId(id);
+                     ObjU.setUser_log(usuarioA);
+                     ObjU.setPassword_log(contrasenaA);
                     //manda a nueva pestaña
                     cambiarPestana(event, "Inicio");
                 }else{
@@ -82,16 +88,23 @@ public class LoginController implements Initializable {
     private void irRegistro(ActionEvent event) {
                     cambiarPestana(event, "Registro");
     }
-    
-    void cambiarPestana(ActionEvent event,String url){
+        
+    void cambiarPestana(ActionEvent event, String url){
         try {
-            Parent buscar_trabajador_parent = FXMLLoader.load(getClass().getResource("/Vista/"+url+".fxml"));
-            Scene buscar_trabajos_scene = new Scene(buscar_trabajador_parent);
+            FXMLLoader loader =  new FXMLLoader();
+            loader.setLocation(getClass().getResource("/Vista/"+url+".fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            
+            InicioController inicioController = loader.getController();
+            inicioController.initData(ObjU);
+
             Stage main_stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            main_stage.setScene(buscar_trabajos_scene);
+            main_stage.setScene(scene);
             main_stage.show();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 }
