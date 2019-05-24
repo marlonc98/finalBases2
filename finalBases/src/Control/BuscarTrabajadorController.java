@@ -56,7 +56,8 @@ public class BuscarTrabajadorController implements Initializable {
     private TextField btCedula;
     LinkedList<Departamento> departamentos = new LinkedList<>();
     LinkedList<Ciudad> ciudades = new LinkedList<>();
-    
+    Usuario user = null;
+    Usuario ObjU =  null;
     LinkedList<Usuario> allUsers = new LinkedList<>();
     /**
      * Initializes the controller class.
@@ -158,15 +159,20 @@ public class BuscarTrabajadorController implements Initializable {
    @FXML
    private void atras(ActionEvent event){
            try {
-            Parent buscar_trabajador_parent = FXMLLoader.load(getClass().getResource("/Vista/Inicio.fxml"));
-            Scene buscar_trabajos_scene = new Scene(buscar_trabajador_parent);
+            FXMLLoader loader =  new FXMLLoader();
+            loader.setLocation(getClass().getResource("/Vista/Inicio.fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            
+            InicioController inicioController = loader.getController();
+            inicioController.initData(ObjU);
+
             Stage main_stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            main_stage.setScene(buscar_trabajos_scene);
+            main_stage.setScene(scene);
             main_stage.show();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
    }
     @FXML
     private void cargarDepartamentos(){

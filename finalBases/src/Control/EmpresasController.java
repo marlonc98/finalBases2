@@ -6,6 +6,7 @@ package Control;
  * and open the template in the editor.
  */
 
+import Modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -33,6 +34,8 @@ import javax.swing.JOptionPane;
  */
 public class EmpresasController implements Initializable {
     
+    
+    Usuario ObjU =  null;
     @FXML
     private TextField regemId, regemNombre, regemAdmin;
     
@@ -81,16 +84,21 @@ public class EmpresasController implements Initializable {
    }
    
    @FXML
-   private void atras(ActionEvent event){
-           try {
-            Parent buscar_trabajador_parent = FXMLLoader.load(getClass().getResource("/Vista/Inicio.fxml"));
-            Scene buscar_trabajos_scene = new Scene(buscar_trabajador_parent);
+    private void atras(ActionEvent event){
+          try {
+            FXMLLoader loader =  new FXMLLoader();
+            loader.setLocation(getClass().getResource("/Vista/Inicio.fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            
+            InicioController inicioController = loader.getController();
+            inicioController.initData(ObjU);
+
             Stage main_stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            main_stage.setScene(buscar_trabajos_scene);
+            main_stage.setScene(scene);
             main_stage.show();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
    }
 }

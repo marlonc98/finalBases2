@@ -1,32 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Control.DetalleController">
+<AnchorPane id="AnchorPane" prefHeight="1199.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Control.DetalleController">
           <children>
-            <Label layoutX="296.0" layoutY="23.0" text="Label" />
-            <Label layoutX="86.0" layoutY="67.0" text="Label" />
-            <Label layoutX="86.0" layoutY="112.0" text="Label" />
-            <Label layoutX="86.0" layoutY="167.0" text="Label" />
-            <Label layoutX="86.0" layoutY="227.0" text="Label" />
-            <Label layoutX="86.0" layoutY="287.0" text="Label" />
-            <Label layoutX="86.0" layoutY="337.0" text="Label" />
-            <Label layoutX="86.0" layoutY="407.0" text="Label" />
-            <Label layoutX="86.0" layoutY="477.0" text="Label" />
-            <Label layoutX="87.0" layoutY="541.0" text="Label" />
-            <Label layoutX="87.0" layoutY="594.0" text="Label" />
-            <Label layoutX="87.0" layoutY="644.0" text="Label" />
-            <Label layoutX="247.0" layoutY="29.0" text="Detalles Avanzados" />
-            <Label layoutX="86.0" layoutY="67.0" text="Identificacion" />
+            <Label layoutX="237.0" layoutY="24.0" text="DETALLES AVANZADOS" />
+            <Label layoutX="87.0" layoutY="59.0" text="Identificacion" />
             <Label layoutX="86.0" layoutY="112.0" text="Nombre del Proyecto" />
             <Label layoutX="86.0" layoutY="167.0" text="Direccion" />
             <Label layoutX="86.0" layoutY="227.0" text="Estado ID" />
             <Label layoutX="86.0" layoutY="287.0" text="ID Contratante" />
-            <Label layoutX="86.0" layoutY="337.0" text="ID Contratado" />
+            <Label layoutX="86.0" layoutY="346.0" text="ID Contratado" />
             <Label layoutX="86.0" layoutY="407.0" text="Opinion Contratante" />
             <Label layoutX="86.0" layoutY="477.0" text="Opinion Contratado" />
             <Label layoutX="87.0" layoutY="541.0" text="Calificacion Contratante" />
@@ -35,19 +23,19 @@
             <Label layoutX="87.0" layoutY="704.0" text="Foto Antes" />
             <Label layoutX="86.0" layoutY="876.0" text="Foto Despues" />
             <Label layoutX="83.0" layoutY="1091.0" text="Descripcion" />
-            <Label fx:id="IDLABEL" layoutX="443.0" layoutY="67.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="NOMBRELABEL" layoutX="444.0" layoutY="112.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="DIRECCIONLABEL" layoutX="444.0" layoutY="167.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELESTADOID" layoutX="444.0" layoutY="227.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELIDCONTRATANTE" layoutX="443.0" layoutY="287.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELCONTRATADOID" layoutX="444.0" layoutY="337.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELOPCONTRA" layoutX="444.0" layoutY="407.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELOPCONTR" layoutX="443.0" layoutY="477.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELCALCONTRA" layoutX="443.0" layoutY="541.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELCALCONTR" layoutX="444.0" layoutY="594.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="LABELCIUDAD" layoutX="444.0" layoutY="644.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="FOTOANT" layoutX="444.0" layoutY="704.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="FOTODESP" layoutX="443.0" layoutY="876.0" prefHeight="17.0" prefWidth="39.0" />
-            <Label fx:id="DESC" layoutX="443.0" layoutY="1091.0" prefHeight="17.0" prefWidth="39.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="247.0" layoutY="721.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="247.0" layoutY="909.0" pickOnBounds="true" preserveRatio="true" />
+      <TextArea layoutX="172.0" layoutY="1109.0" prefHeight="71.0" prefWidth="384.0" />
+      <TextField layoutX="342.0" layoutY="54.0" />
+      <TextField layoutX="341.0" layoutY="107.0" />
+      <TextField layoutX="341.0" layoutY="162.0" />
+      <TextField layoutX="341.0" layoutY="222.0" />
+      <TextField layoutX="341.0" layoutY="282.0" />
+      <TextField layoutX="341.0" layoutY="341.0" />
+      <TextField layoutX="341.0" layoutY="402.0" />
+      <TextField layoutX="341.0" layoutY="472.0" />
+      <TextField layoutX="341.0" layoutY="536.0" />
+      <TextField layoutX="341.0" layoutY="589.0" />
+      <TextField layoutX="342.0" layoutY="639.0" />
          </children>
 </AnchorPane>

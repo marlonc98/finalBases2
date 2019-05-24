@@ -10,7 +10,6 @@ import Modelo.Certificado_nombre;
 import Modelo.Ciudad;
 import Modelo.Departamento;
 import Modelo.Usuario;
-import com.mysql.jdbc.Blob;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.File;
 import java.io.FileInputStream;
